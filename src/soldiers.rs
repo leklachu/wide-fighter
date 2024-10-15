@@ -269,6 +269,8 @@ impl Soldier {
    }
 }
 
+// N.B. correct for widelands 1.2
+
 pub const BARBARIAN: SoldierType = SoldierType {
    health_lvls: 3,
    health_base: 13000,
