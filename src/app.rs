@@ -8,6 +8,8 @@ use crate::results;
 use crate::results::ResultType;
 use crate::soldiers::*;
 
+#[derive(serde::Deserialize, serde::Serialize)]
+#[serde(default)]
 pub struct App {
    fightclub: FightClub,
    fights: Vec<((Soldier, Soldier), results::ParallelFight)>,
@@ -37,13 +39,13 @@ impl Default for App {
 }
 
 impl App {
-   pub fn new(_cc: &eframe::CreationContext<'_>) -> Self {
+   pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
       // n.b. this is where one can customise look&feel with
       // `cc.egui_ctx.set_visuals` and `cc.egui_ctx.set_fonts`.
 
-      // if let Some(storage)...
-      // TODO do store - settings but not results(?)
-      // and have 'reset settings' button
+      if let Some(storage) = cc.storage {
+         return eframe::get_value(storage, eframe::APP_KEY).unwrap_or_default();
+      }
 
       Default::default()
       // let mut e = App::default();
@@ -55,7 +57,9 @@ impl App {
 const HOVER_FIGHT_N: &str = "How many pairs will fight per match-up. Note that for now, results will not be freshly generated if the number is changed.";
 
 impl eframe::App for App {
-   // fn save
+   fn save(&mut self, storage: &mut dyn eframe::Storage) {
+      eframe::set_value(storage, eframe::APP_KEY, self);
+   }
 
    /// Called each time the UI needs repainting
    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {

@@ -14,7 +14,7 @@ use crate::soldiers::*;
 
 // #[derive(Debug, Copy, Clone)]
 // pub struct FightClub([SoldierBase; FIGHT_QUANTITY]);
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct FightClub(pub Vec<SoldierBase>);
 
 impl FightClub {

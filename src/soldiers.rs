@@ -8,7 +8,7 @@
 // pub const FIGHT_QUANTITY: usize = 6;
 
 // #[derive(Debug, Copy, Clone)]
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, serde::Deserialize, serde::Serialize)]
 pub enum Tribe {
    Barbarian,
    Empire,
@@ -50,14 +50,14 @@ pub enum _Param {
 /// etc) without how many levels a soldier has been trained.
 /// - Soldier (below) is an individual soldier's health/attack/etc without name or origin.
 // #[derive(Debug, Copy, Clone)]
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct SoldierBase {
    pub params: SoldierType,
    pub tribe: Tribe,
    pub levels: Levels,
 }
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, serde::Deserialize, serde::Serialize)]
 pub struct Levels {
    pub health: u8,
    pub attack: u8,
@@ -205,7 +205,7 @@ impl SoldierBase {
 // default settings  //
 ///////////////////////
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, serde::Deserialize, serde::Serialize)]
 pub struct SoldierType {
    pub health_lvls: i32,
    pub health_base: i32,
@@ -225,7 +225,9 @@ pub struct SoldierType {
    pub evade_incr: i32,
 }
 
-#[derive(Debug, Copy, Clone, Eq, Ord, PartialEq, PartialOrd)]
+#[derive(
+   Debug, Copy, Clone, Eq, Ord, PartialEq, PartialOrd, serde::Deserialize, serde::Serialize,
+)]
 pub struct Soldier {
    pub health: i32,
    pub attack_max: i32,

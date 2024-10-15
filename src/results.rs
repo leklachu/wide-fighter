@@ -32,7 +32,7 @@ impl std::fmt::Display for Datum {
    }
 }
 
-#[derive(Copy, Clone, Debug, PartialEq)]
+#[derive(Copy, Clone, Debug, PartialEq, serde::Deserialize, serde::Serialize)]
 pub enum ResultType {
    EqPercent,
    EqHealth,
@@ -213,6 +213,7 @@ impl ResultType {
 
 /// A `ParallelFight` result is from many identical soldiers s1, each fighting a soldier s2. (All
 /// s2 are identical; s1 and s2 can be different.)
+#[derive(serde::Deserialize, serde::Serialize)]
 pub struct ParallelFight {
    // s1 v s2
    pub s1_aggressor_win_percent: f32,

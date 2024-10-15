@@ -56,14 +56,6 @@ fn main() {
          .start(canvas, options, Box::new(|cc| Ok(Box::new(App::new(cc)))))
          .await;
 
-      // let start_result = eframe::WebRunner::new()
-      //    .start(
-      //       "the_canvas_id",
-      //       options,
-      //       Box::new(|cc| Ok(Box::new(App::new(cc)))),
-      //    )
-      //    .await;
-
       // Remove the loading text and spinner:
       if let Some(loading_text) = document.get_element_by_id("loading_text") {
          match start_result {

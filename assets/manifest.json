@@ -1,0 +1,10 @@
+{
+  "name": "Wide Fighter",
+  "short_name": "wide-fighter",
+  "lang": "en-GB",
+  "id": "/index.html",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "white",
+  "theme_color": "white"
+}
